@@ -87,7 +87,6 @@ function sendInfo() {
 		$('#case-diameter2').css('border-color', '#e6aaaa');
 		$('#warning-case').show();
 		window.scrollTo(0,900);
-		return false;
 	} else {
 		$('#warning-case').hide();
 	}
