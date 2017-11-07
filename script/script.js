@@ -83,36 +83,52 @@ window.onload = function() {
 			e.target.parentElement.classList.add('active-step');
 		}
 	}
+
 	inputs2.forEach( function(e, index) {
 		e.addEventListener('focus', function() {
-			for (var i = 0; i < stepsArray.length; i++) {
-				stepsArray[i].classList.remove('active-step');
-			};
-			stepsArray[1].classList.add('active-step');
+            focusStep(stepsArray[1]);
 		}, false);
 	});
 	inputs3.forEach( function(e, index) {
 		e.addEventListener('focus', function() {
-			for (var i = 0; i < stepsArray.length; i++) {
-				stepsArray[i].classList.remove('active-step');
-			};
-			stepsArray[2].classList.add('active-step');
+            focusStep(stepsArray[2]);
 		}, false);
 	});
 	inputs4.forEach( function(e, index) {
 		e.addEventListener('focus', function() {
-			for (var i = 0; i < stepsArray.length; i++) {
-				stepsArray[i].classList.remove('active-step');
-			};
-			stepsArray[3].classList.add('active-step');
+            focusStep(stepsArray[3]);
 		}, false);
 	});
 	inputs5.forEach( function(e, index) {
 		e.addEventListener('focus', function() {
-			for (var i = 0; i < stepsArray.length; i++) {
-				stepsArray[i].classList.remove('active-step');
-			};
-			stepsArray[4].classList.add('active-step');
+            focusStep(stepsArray[4]);
 		}, false);
 	});
+
+    function focusStep(el) {
+        for (var i = 0; i < stepsArray.length; i++) {
+            stepsArray[i].classList.remove('active-step');
+        }
+        el.classList.add('active-step');
+    }
+
+	document.querySelectorAll('[type="file"]').forEach(function (t) {
+        t.addEventListener('change', function (e) {
+            displayImage(e);
+        }, false);
+	});
+
+    function displayImage(e) {
+    	var files = e.target.files;
+		var wrapper = e.target.parentNode;
+		var reader = new FileReader();
+
+        reader.onload = function(frEvent) {
+            wrapper.style.backgroundImage = 'url(' + frEvent.target.result + ')';
+            wrapper.style.backgroundSize = 'cover';
+            wrapper.style.fontSize = '0';
+            wrapper.style.border = '1px solid #e1e7ea';
+        };
+        reader.readAsDataURL(files[0]); 
+    }
 }
